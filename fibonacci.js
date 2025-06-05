@@ -9,12 +9,7 @@
 //for (let i=0; )
 
 
-const readline = require('readline');
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
-
+// Código adaptado para navegador
 function generarFibonacci(n) {
   let a = 0, b = 1;
   const resultado = [];
@@ -27,20 +22,14 @@ function generarFibonacci(n) {
   return resultado;
 }
 
-function pedirNumero() {
-  rl.question('Ingrese su número: ', (input) => {
-    const numero = Number(input);
-    if (isNaN(numero) || numero < 1) {
-      console.log('Por favor, ingrese un número válido mayor a 0.');
-      pedirNumero();
-    } else {
-      // Usar la función para generar la serie de Fibonacci
-      const serie = generarFibonacci(numero);
-      console.log('Serie de Fibonacci:');
-      console.log(serie.join(', '));
-      rl.close();
-    }
-  });
+function mostrarFibonacci() {
+  const input = document.getElementById('numero');
+  const resultadoDiv = document.getElementById('resultado');
+  const n = Number(input.value);
+  if (isNaN(n) || n < 1) {
+    resultadoDiv.textContent = 'Por favor, ingresa un número válido mayor a 0.';
+    return;
+  }
+  const serie = generarFibonacci(n);
+  resultadoDiv.textContent = 'Serie de Fibonacci: ' + serie.join(', ');
 }
-
-pedirNumero();
